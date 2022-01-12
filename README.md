@@ -1,2 +1,1 @@
-# myVK
-VK API
+# myVKApp
