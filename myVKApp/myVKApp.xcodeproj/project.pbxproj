@@ -34,6 +34,7 @@
 		B6E284C5275D842300306D3B /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E284C4275D842300306D3B /* FriendCell.swift */; };
 		B6E284C8275D846400306D3B /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E284C7275D846400306D3B /* FriendModel.swift */; };
 		B6ECAD89278F7BE300894333 /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ECAD88278F7BE300894333 /* VKLoginViewController.swift */; };
+		B6ECAD8C278F91DD00894333 /* VKData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ECAD8B278F91DD00894333 /* VKData.swift */; };
 		B6F5B9DB275D5CDC0037C8C0 /* MyGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F5B9DA275D5CDC0037C8C0 /* MyGroupsTableViewController.swift */; };
 		B6F5B9DF275D5DFC0037C8C0 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F5B9DE275D5DFC0037C8C0 /* GroupCell.swift */; };
 		B6F5B9E2275D679E0037C8C0 /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F5B9E1275D679E0037C8C0 /* GroupModel.swift */; };
@@ -69,6 +70,7 @@
 		B6E284C4275D842300306D3B /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		B6E284C7275D846400306D3B /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
 		B6ECAD88278F7BE300894333 /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
+		B6ECAD8B278F91DD00894333 /* VKData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKData.swift; sourceTree = "<group>"; };
 		B6F5B9DA275D5CDC0037C8C0 /* MyGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsTableViewController.swift; sourceTree = "<group>"; };
 		B6F5B9DE275D5DFC0037C8C0 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		B6F5B9E1275D679E0037C8C0 /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 		B69127A427552A7F0036FE5F /* myVKApp */ = {
 			isa = PBXGroup;
 			children = (
+				B6ECAD8A278F912200894333 /* VKRequests */,
 				B6AB24AC278C890400AD3B4E /* Session */,
 				B619ABCC276E9D5000E80918 /* CommonViews */,
 				B61E0ADA276C264300753B23 /* Controls */,
@@ -253,6 +256,14 @@
 				B6E284C4275D842300306D3B /* FriendCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		B6ECAD8A278F912200894333 /* VKRequests */ = {
+			isa = PBXGroup;
+			children = (
+				B6ECAD8B278F91DD00894333 /* VKData.swift */,
+			);
+			path = VKRequests;
 			sourceTree = "<group>";
 		};
 		B6F5B9D8275D56770037C8C0 /* Controllers */ = {
@@ -360,6 +371,7 @@
 				B61EC81E275EBFA900C9C448 /* FriendCollectionViewController.swift in Sources */,
 				B6F5B9DF275D5DFC0037C8C0 /* GroupCell.swift in Sources */,
 				B69127AA27552A7F0036FE5F /* LoginViewController.swift in Sources */,
+				B6ECAD8C278F91DD00894333 /* VKData.swift in Sources */,
 				B69296732768F5AC0064F971 /* FriendsSection.swift in Sources */,
 				B69127A627552A7F0036FE5F /* AppDelegate.swift in Sources */,
 				B61EC821275ECAD500C9C448 /* ExternalGroupsTableViewController.swift in Sources */,

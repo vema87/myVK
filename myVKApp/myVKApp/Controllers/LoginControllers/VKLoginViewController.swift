@@ -77,5 +77,12 @@ extension VKLoginViewController: WKNavigationDelegate {
 					performSegue(withIdentifier: "login", sender: self)
 				}
 				decisionHandler(.cancel)
+				
+				// test of VK API:
+				let vk: VKData = VKData()
+				vk.getFriensList(Session.shared.userID)
+				vk.getUserPhotos(Session.shared.userID)
+				vk.getUserGroupList(Session.shared.userID)
+				vk.getGroupData("113628315")
 	}
 }
