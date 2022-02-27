@@ -83,6 +83,6 @@ extension VKLoginViewController: WKNavigationDelegate {
 				vk.getFriensList(Session.shared.userID)
 				vk.getUserPhotos(Session.shared.userID)
 				vk.getUserGroupList(Session.shared.userID)
-				vk.getGroupData("113628315")
+				vk.getGroupDataByString("just Story")
 	}
 }
