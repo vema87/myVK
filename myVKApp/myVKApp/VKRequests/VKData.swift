@@ -95,8 +95,8 @@ class VKData {
 		task.resume()
 	}
 	
-	/// Get group data
-	func getGroupData(_ groupID: String) {
+	/// Get group data by ID
+	func getGroupDataByID(_ groupID: String) {
 		var urlConstructor = URLComponents()
 		
 		urlConstructor.scheme = "https"
@@ -105,6 +105,32 @@ class VKData {
 		urlConstructor.queryItems = [
 			URLQueryItem(name: "access_token", value: Session.shared.token),
 			URLQueryItem(name: "group_id", value: groupID),
+			URLQueryItem(name: "v", value: "5.131")
+		]
+		
+		guard let url = urlConstructor.url as? URL else {
+			return
+		}
+		
+		let request = URLRequest(url: url)
+		let task = session.dataTask(with: request) { (data, response, error) in
+			let json = try? JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
+			print(">>> GET GROUP DATA: \(json)")
+		}
+		task.resume()
+	}
+	
+	/// Get group data by searching string
+	func getGroupDataByString(_ searchString: String) {
+		var urlConstructor = URLComponents()
+		
+		urlConstructor.scheme = "https"
+		urlConstructor.host = "api.vk.com"
+		urlConstructor.path = "/method/groups.search"
+		urlConstructor.queryItems = [
+			URLQueryItem(name: "access_token", value: Session.shared.token),
+			URLQueryItem(name: "q", value: searchString),
+			URLQueryItem(name: "sort", value: "0"),
 			URLQueryItem(name: "v", value: "5.131")
 		]
 		
