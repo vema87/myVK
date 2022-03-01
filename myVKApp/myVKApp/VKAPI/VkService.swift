@@ -67,14 +67,16 @@ class VkService {
 			
 //			let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
 //			print(json)
-//
+
 			do {
-				let result = try JSONDecoder().decode(Response.self, from: data)
-				print(result)
+				let result = try JSONDecoder().decode(FriendContainer.self, from: data)
+				for friend in result.friends {
+					print(" \(friend.id) \(friend.firstName) \(friend.lastName)")
+				}
 			} catch {
 				print(error)
 			}
-			
+				
 		}.resume()
 	}
 	
