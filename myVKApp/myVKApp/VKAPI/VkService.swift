@@ -62,8 +62,19 @@ class VkService {
 			
 			guard let data = data else { return }
 			
-			let json = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
-			print(json)
+//			let json = String(data: data, encoding: .utf8)
+//			print(json)
+			
+//			let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+//			print(json)
+//
+			do {
+				let result = try JSONDecoder().decode(Response.self, from: data)
+				print(result)
+			} catch {
+				print(error)
+			}
+			
 		}.resume()
 	}
 	
@@ -73,7 +84,7 @@ class VkService {
 			"user_id": userID,
 			"order": "name",
 			"v": "5.131",
-			"fields": "id,first_name,last_name"
+			"fields": "id,first_name,last_name, photo_200"
 		]
 		let request = Request(host: .apiVkCom,
 						scheme: .https,
