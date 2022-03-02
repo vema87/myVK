@@ -70,9 +70,6 @@ class VkService {
 
 			do {
 				let result = try JSONDecoder().decode(FriendContainer.self, from: data)
-//				for friend in result.friends {
-//					print(" \(friend.id) \(friend.firstName) \(friend.lastName)")
-//				}
 				completion(result.friends)
 			} catch {
 				print(error)
@@ -81,7 +78,7 @@ class VkService {
 		}.resume()
 	}
 	
-	func loadGroups(request: Request, completion: @escaping ([Friend]) -> Void) {
+	func loadGroups(request: Request, completion: @escaping ([Group]) -> Void) {
 		guard let url = request.url else { return }
 		
 		request.session.dataTask(with: url) { (data, response, error) in
@@ -90,19 +87,13 @@ class VkService {
 			}
 			
 			guard let data = data else { return }
-			
-//			let json = String(data: data, encoding: .utf8)
-//			print(json)
-			
-//			let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-//			print(json)
 
 			do {
-				let result = try JSONDecoder().decode(FriendContainer.self, from: data)
-//				for friend in result.friends {
-//					print(" \(friend.id) \(friend.firstName) \(friend.lastName)")
+				let result = try JSONDecoder().decode(GroupContainer.self, from: data)
+//				for group in result.groups {
+//					print(" \(group.id) \(group.groupName)")
 //				}
-				completion(result.friends)
+				completion(result.groups)
 			} catch {
 				print(error)
 			}
@@ -126,21 +117,7 @@ class VkService {
 		loadFriends(request: request, completion: completion)
 	}
 	
-	func getUserPhotos(_ userID: String) {
-		let params = [
-			"access_token": Session.shared.token,
-			"owner_id": userID,
-			"v": "5.131"
-		]
-		let request = Request(host: .apiVkCom,
-						scheme: .https,
-						path: .getAllPhotos,
-						params: params)
-		
-		//load(request: request)
-	}
-	
-	func getUserGroupList(_ userID: String) {
+	func getUserGroupsList(_ userID: String, completion: @escaping ([Group]) -> Void) {
 		let params = [
 			"access_token": Session.shared.token,
 			"user_id": userID,
@@ -150,6 +127,19 @@ class VkService {
 		let request = Request(host: .apiVkCom,
 						scheme: .https,
 						path: .getGroups,
+						params: params)
+		loadGroups(request: request, completion: completion)
+	}
+	
+	func getUserPhotos(_ userID: String) {
+		let params = [
+			"access_token": Session.shared.token,
+			"owner_id": userID,
+			"v": "5.131"
+		]
+		let request = Request(host: .apiVkCom,
+						scheme: .https,
+						path: .getAllPhotos,
 						params: params)
 		
 		//load(request: request)

@@ -80,7 +80,7 @@ extension VKLoginViewController: WKNavigationDelegate {
 				// test of VK API:
 //				VkService.shared.getFriends(Session.shared.userID)
 //				VkService.shared.getUserPhotos(Session.shared.userID)
-//				VkService.shared.getUserGroupList(Session.shared.userID)
+//				VkService.shared.getUserGroupsList(Session.shared.userID)
 //				VkService.shared.getGroupDataByString("just Story")
 	}
 }

@@ -8,6 +8,8 @@
 import UIKit
 
 class MyGroupsTableViewController: UITableViewController {
+
+	private var groups = [Group]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -16,6 +18,13 @@ class MyGroupsTableViewController: UITableViewController {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		VkService.shared.getUserGroupsList(Session.shared.userID) { [weak self] groupsList in
+			DispatchQueue.main.async {
+				guard let self = self else { return }
+				self.groups = groupsList
+				self.tableView.reloadData()
+			}
+		}
 		tableView.reloadData()
 	}
 	
@@ -23,7 +32,7 @@ class MyGroupsTableViewController: UITableViewController {
 	
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return Groups.shared.internalGroups.count
+		return groups.count
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -32,21 +41,32 @@ class MyGroupsTableViewController: UITableViewController {
 			return UITableViewCell()
 		}
 		
-		groupCell.groupName.text = Groups.shared.internalGroups[indexPath.row].groupName
-		groupCell.groupAvatar.image = Groups.shared.internalGroups[indexPath.row].groupAvatar
+		groupCell.groupName.text = groups[indexPath.row].groupName
+		groupCell.groupAvatar.image = UIImage(named: "group1")
+//		groupCell.groupAvatar.image = Groups.shared.internalGroups[indexPath.row].groupAvatar
 		
 		return groupCell
 	}
 	
 	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete {
-			Groups.shared.leave(indexPath.row)
+			groups.remove(at: indexPath.row)
 			tableView.deleteRows(at: [indexPath], with: .fade)
 			tableView.reloadData()
 		} else if editingStyle == .insert {
 			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
 		}
 	}
+	
+//	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//		if editingStyle == .delete {
+//			Groups.shared.leave(indexPath.row)
+//			tableView.deleteRows(at: [indexPath], with: .fade)
+//			tableView.reloadData()
+//		} else if editingStyle == .insert {
+//			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//		}
+//	}
 	
 	/*
 	 // Override to support conditional editing of the table view.

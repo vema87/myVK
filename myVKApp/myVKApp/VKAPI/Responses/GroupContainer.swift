@@ -9,20 +9,18 @@ import Foundation
 
 class Group: Decodable {
 	let id: Int
-	var firstName: String
-	var lastName: String
+	var groupName: String
 	var avatar: String
 	
 	enum CodingKeys: String, CodingKey {
 		case id
-		case firstName = "first_name"
-		case lastName = "last_name"
+		case groupName = "name"
 		case avatar = "photo_200"
 	}
 }
 
 struct GroupContainer: Decodable {
-	let friends: [Friend]
+	let groups: [Group]
 }
 
 extension GroupContainer {
@@ -36,6 +34,6 @@ extension GroupContainer {
 	init(from decoder: Decoder) throws {
 		let mainContainer = try decoder.container(keyedBy: CodingKeys.self)
 		let itemContainer = try mainContainer.nestedContainer(keyedBy: CodingKeys.ItemKeys.self, forKey: .response)
-		friends = try itemContainer.decode([Friend].self, forKey: .items)
+		groups = try itemContainer.decode([Group].self, forKey: .items)
 	}
 }

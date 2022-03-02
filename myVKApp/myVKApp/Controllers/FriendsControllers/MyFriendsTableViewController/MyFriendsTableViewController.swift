@@ -40,7 +40,6 @@ class MyFriendsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		print(">>> COUNT: \(friends.count)")
 		return friends.count
 	}
 
