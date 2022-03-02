@@ -52,7 +52,7 @@ class VkService {
 	
 	private init() {}
 	
-	func load(request: Request) {
+	func loadFriends(request: Request, completion: @escaping ([Friend]) -> Void) {
 		guard let url = request.url else { return }
 		
 		request.session.dataTask(with: url) { (data, response, error) in
@@ -70,9 +70,10 @@ class VkService {
 
 			do {
 				let result = try JSONDecoder().decode(FriendContainer.self, from: data)
-				for friend in result.friends {
-					print(" \(friend.id) \(friend.firstName) \(friend.lastName)")
-				}
+//				for friend in result.friends {
+//					print(" \(friend.id) \(friend.firstName) \(friend.lastName)")
+//				}
+				completion(result.friends)
 			} catch {
 				print(error)
 			}
@@ -80,7 +81,36 @@ class VkService {
 		}.resume()
 	}
 	
-	func getFriends(_ userID: String) {
+	func loadGroups(request: Request, completion: @escaping ([Friend]) -> Void) {
+		guard let url = request.url else { return }
+		
+		request.session.dataTask(with: url) { (data, response, error) in
+			if let error = error {
+				print("Error ", error.localizedDescription)
+			}
+			
+			guard let data = data else { return }
+			
+//			let json = String(data: data, encoding: .utf8)
+//			print(json)
+			
+//			let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+//			print(json)
+
+			do {
+				let result = try JSONDecoder().decode(FriendContainer.self, from: data)
+//				for friend in result.friends {
+//					print(" \(friend.id) \(friend.firstName) \(friend.lastName)")
+//				}
+				completion(result.friends)
+			} catch {
+				print(error)
+			}
+				
+		}.resume()
+	}
+	
+	func getFriends(_ userID: String, completion: @escaping ([Friend]) -> Void) {
 		let params = [
 			"access_token": Session.shared.token,
 			"user_id": userID,
@@ -93,7 +123,7 @@ class VkService {
 						path: .getFriends,
 						params: params)
 		
-		load(request: request)
+		loadFriends(request: request, completion: completion)
 	}
 	
 	func getUserPhotos(_ userID: String) {
@@ -107,7 +137,7 @@ class VkService {
 						path: .getAllPhotos,
 						params: params)
 		
-		load(request: request)
+		//load(request: request)
 	}
 	
 	func getUserGroupList(_ userID: String) {
@@ -122,7 +152,7 @@ class VkService {
 						path: .getGroups,
 						params: params)
 		
-		load(request: request)
+		//load(request: request)
 	}
 	
 	func getGroupDataByID(_ groupID: String) {
@@ -136,7 +166,7 @@ class VkService {
 						path: .getGroupsById,
 						params: params)
 		
-		load(request: request)
+		//load(request: request)
 	}
 	
 	func getGroupDataByString(_ searchString: String) {
@@ -151,6 +181,6 @@ class VkService {
 						path: .searchGroups,
 						params: params)
 		
-		load(request: request)
+		//load(request: request)
 	}
 }

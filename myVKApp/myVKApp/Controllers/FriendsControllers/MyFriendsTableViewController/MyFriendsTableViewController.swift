@@ -9,15 +9,26 @@ import UIKit
 
 class MyFriendsTableViewController: UITableViewController {
 
-	var friends = FriendsLoader.getFriendSections()
+	private var data = [Friend]()
+
+	var friends: [FriendsSection] = []
 	var lettersOfNames = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.dataSource = self
         self.tableView.backgroundView = nil
         self.tableView.backgroundColor = UIColor(red: 0.738, green: 0.628, blue: 0.884, alpha: 0.5)
         self.tableView.showsVerticalScrollIndicator = false
-        loadLetters()
+        VkService.shared.getFriends(Session.shared.userID) { [weak self] friendsList in
+			DispatchQueue.main.async {
+				guard let self = self else { return }
+				self.data = friendsList
+				self.friends = FriendsLoader.getFriendSections(data: self.data)
+				self.loadLetters()
+				self.tableView.reloadData()
+			}
+		}
 		self.tableView.sectionHeaderTopPadding = 0
     }
     
@@ -29,6 +40,7 @@ class MyFriendsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 	override func numberOfSections(in tableView: UITableView) -> Int {
+		print(">>> COUNT: \(friends.count)")
 		return friends.count
 	}
 
@@ -49,8 +61,9 @@ class MyFriendsTableViewController: UITableViewController {
 		}
 		
 		let section = friends[indexPath.section]
-		let name = section.data[indexPath.row].friendLastName + " " + section.data[indexPath.row].friendFirstName
-		let image = section.data[indexPath.row].friendAvatar
+		let name = section.data[indexPath.row].lastName + " " + section.data[indexPath.row].firstName
+		let image = UIImage(named: "friend1")
+//		let image = section.data[indexPath.row].friendAvatar
 
         friendCell.friendName.text = name
         if let avatar = image {
@@ -85,7 +98,8 @@ class MyFriendsTableViewController: UITableViewController {
 //				print("sender: \(sender), cell: \(cell)")
 				if let indexPath = tableView.indexPath(for: cell) {
 					print(">>> indexPath: \(indexPath)")
-					desctinationViewController.image = friends[indexPath.section].data[indexPath.row].friendAvatar
+					desctinationViewController.image = UIImage(named: "friend1")
+//					desctinationViewController.image = friends[indexPath.section].data[indexPath.row].friendAvatar
 //					desctinationViewController.image = Friends.shared.internalFriendsList[indexPath.row].friendAvatar
 				}
 			}

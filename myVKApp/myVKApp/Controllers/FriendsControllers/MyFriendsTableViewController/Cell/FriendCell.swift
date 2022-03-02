@@ -40,4 +40,8 @@ class FriendCell: UITableViewCell {
 		
 		self.friendAvatar.layer.add(animation, forKey: nil)
 	}
+	
+	func content(model: Friend) {
+		friendName.text = model.lastName + " " + model.firstName
+	}
 }
