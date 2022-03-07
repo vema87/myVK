@@ -73,16 +73,14 @@ extension VKLoginViewController: WKNavigationDelegate {
 					let userId = params["user_id"] {
 					session.token = token
 					session.userID = userId
-					print("TOKEN: \(token), USERID: \(userId)")
 					performSegue(withIdentifier: "login", sender: self)
 				}
 				decisionHandler(.cancel)
 				
 				// test of VK API:
-				let vk: VKData = VKData()
-				vk.getFriensList(Session.shared.userID)
-				vk.getUserPhotos(Session.shared.userID)
-				vk.getUserGroupList(Session.shared.userID)
-				vk.getGroupDataByString("just Story")
+//				VkService.shared.getFriends(Session.shared.userID)
+//				VkService.shared.getUserPhotos(Session.shared.userID)
+//				VkService.shared.getUserGroupsList(Session.shared.userID)
+//				VkService.shared.getGroupDataByString("just Story")
 	}
 }

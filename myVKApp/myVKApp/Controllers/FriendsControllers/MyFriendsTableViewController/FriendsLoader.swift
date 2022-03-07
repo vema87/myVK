@@ -7,17 +7,17 @@
 
 class FriendsLoader {
 
-	static func getFriendSections() -> [FriendsSection] {
-		let sortedFriends = sortFriends(friends: Friends.shared.internalFriendsList)
+	static func getFriendSections(data: [Friend]) -> [FriendsSection] {
+		let sortedFriends = sortFriends(friends: data)
 		let sectionsArray = formFriendsSection(friends: sortedFriends)
 		return sectionsArray
 	}
 	
-	static func sortFriends(friends: [FriendModel]) -> [Character: [FriendModel]] {
-		var newFriends: [Character: [FriendModel]] = [:]
+	static func sortFriends(friends: [Friend]) -> [Character: [Friend]] {
+		var newFriends: [Character: [Friend]] = [:]
 		for friend in friends {
 			guard
-				let firstChar = friend.friendLastName.first
+				let firstChar = friend.lastName.first
 				else {
 					continue
 				}
@@ -28,20 +28,21 @@ class FriendsLoader {
 					newFriends.updateValue(newValue, forKey: firstChar)
 					continue
 				}
-			
+
 			friendArray.append(friend)
 			newFriends.updateValue(friendArray, forKey: firstChar)
 		}
 		return newFriends
 	}
 	
-	static func formFriendsSection(friends: [Character: [FriendModel]]) -> [FriendsSection] {
+	static func formFriendsSection(friends: [Character: [Friend]]) -> [FriendsSection] {
 		var sectionsArray: [FriendsSection] = []
 		for (key, friendsArray) in friends {
 			sectionsArray.append(FriendsSection(key: key, data: friendsArray))
 		}
 		sectionsArray.sort { $0 < $1 }
-		
+
 		return sectionsArray
 	}
+	
 }
