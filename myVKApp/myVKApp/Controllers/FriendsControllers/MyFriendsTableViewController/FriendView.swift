@@ -9,13 +9,14 @@ import UIKit
 
 class FriendView: UIView {
 
-	var image: UIImage = UIImage() {
+	var image: UIImage? = UIImage() {
 		didSet {
-			imageView.image = image
+			guard let imgView = imageView else { return }
+			imgView.image = image
 		}
 	}
 	
-	private var imageView: UIImageView = UIImageView()
+	var imageView: UIImageView? = UIImageView()
 	private var containerView: UIView = UIView()
 	
 	@IBInspectable var shadowColor: UIColor = .black {
@@ -56,13 +57,15 @@ class FriendView: UIView {
 		containerView.frame = self.bounds
 		containerView.layer.cornerRadius = 20
 		
-		imageView.layer.masksToBounds = true
-		imageView.frame = containerView.bounds
-		imageView.contentMode = .scaleAspectFill
-		imageView.layer.cornerRadius = imageView.frame.size.width / 2
-		imageView.image = image
+		guard let imgView = imageView else { return }
 		
-		containerView.addSubview(imageView)
+		imgView.layer.masksToBounds = true
+		imgView.frame = containerView.bounds
+		imgView.contentMode = .scaleAspectFill
+		imgView.layer.cornerRadius = imgView.frame.size.width / 2
+		imgView.image = image
+		
+		containerView.addSubview(imgView)
 		self.addSubview(containerView)
 		updateShadows()
 	}

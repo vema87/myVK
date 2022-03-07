@@ -44,4 +44,8 @@ class FriendCell: UITableViewCell {
 	func content(model: Friend) {
 		friendName.text = model.lastName + " " + model.firstName
 	}
+	
+	override func prepareForReuse() {
+		friendAvatar.image = nil
+	}
 }
