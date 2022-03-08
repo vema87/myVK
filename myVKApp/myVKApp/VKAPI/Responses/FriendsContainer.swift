@@ -1,5 +1,5 @@
 //
-//  FriendContainer.swift
+//  FriendsContainer.swift
 //  myVKApp
 //
 //  Created by Sergey Makeev on 01.03.2022.
@@ -21,11 +21,11 @@ class Friend: Decodable {
 	}
 }
 
-struct FriendContainer: Decodable {
+struct FriendsContainer: Decodable {
 	let friends: [Friend]
 }
 
-extension FriendContainer {
+extension FriendsContainer {
 	enum CodingKeys: String, CodingKey {
 		case response
 		enum ItemKeys: String, CodingKey {
@@ -35,6 +35,7 @@ extension FriendContainer {
 	
 	init(from decoder: Decoder) throws {
 		let mainContainer = try decoder.container(keyedBy: CodingKeys.self)
+//		print("!!!!! \(mainContainer.allKeys)")
 		let itemContainer = try mainContainer.nestedContainer(keyedBy: CodingKeys.ItemKeys.self, forKey: .response)
 		friends = try itemContainer.decode([Friend].self, forKey: .items)
 	}

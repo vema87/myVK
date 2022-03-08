@@ -1,5 +1,5 @@
 //
-//  GroupContainer.swift
+//  GroupsContainer.swift
 //  myVKApp
 //
 //  Created by Sergey Makeev on 02.03.2022.
@@ -19,11 +19,11 @@ class Group: Decodable {
 	}
 }
 
-struct GroupContainer: Decodable {
+struct GroupsContainer: Decodable {
 	let groups: [Group]
 }
 
-extension GroupContainer {
+extension GroupsContainer {
 	enum CodingKeys: String, CodingKey {
 		case response
 		enum ItemKeys: String, CodingKey {

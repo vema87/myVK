@@ -1,44 +1,60 @@
 //
-//  MyFriendCollectionViewController.swift
+//  PhotosCollectionViewController.swift
 //  myVKApp
 //
-//  Created by Sergey Makeev on 07.12.2021.
+//  Created by Sergey Makeev on 07.03.2022.
 //
 
 import UIKit
 
-private let reuseIdentifier = "FriendDataID"
+//private let reuseIdentifier = "Cell"
 
-class FriendCollectionViewController: UICollectionViewController {
-
-	var indexOfElement = 0
+class PhotosCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
     }
 
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
+    }
+    */
 
     // MARK: UICollectionViewDataSource
+
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 0
+    }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 1 //Friends.shared.internalFriendsList.count
+        return 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard
-			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FriendCollectionViewCell
-        else {
+		guard let photoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosCollectionViewCellID", for: indexPath) as? PhotosCollectionViewCell
+		else {
 			return UICollectionViewCell()
 		}
+		
+        
     
-//        cell.friendName.text = Friends.shared.internalFriendsList[indexOfElement].friendLastName + " " + Friends.shared.internalFriendsList[indexOfElement].friendFirstName
-//        cell.friendAvatar.image = Friends.shared.internalFriendsList[indexOfElement].friendAvatar
+        // Configure the cell
     
-        return cell
+        return photoCell
     }
-    
 
     // MARK: UICollectionViewDelegate
 

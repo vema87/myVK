@@ -63,13 +63,13 @@ class VkService {
 			guard let data = data else { return }
 			
 //			let json = String(data: data, encoding: .utf8)
-//			print(json)
+//			print(" >>> friend: \(json)")
 			
-//			let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-//			print(json)
+			let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+			print(" >>> friend: \(json)")
 
 			do {
-				let result = try JSONDecoder().decode(FriendContainer.self, from: data)
+				let result = try JSONDecoder().decode(FriendsContainer.self, from: data)
 				completion(result.friends)
 			} catch {
 				print(error)
@@ -89,7 +89,7 @@ class VkService {
 			guard let data = data else { return }
 
 			do {
-				let result = try JSONDecoder().decode(GroupContainer.self, from: data)
+				let result = try JSONDecoder().decode(GroupsContainer.self, from: data)
 //				for group in result.groups {
 //					print(" \(group.id) \(group.groupName)")
 //				}
@@ -97,6 +97,40 @@ class VkService {
 			} catch {
 				print(error)
 			}
+				
+		}.resume()
+	}
+	
+	func loadPhotos(request: Request, completion: @escaping ([Photo]) -> Void) {
+		guard let url = request.url else { return }
+		
+		request.session.dataTask(with: url) { (data, response, error) in
+			if let error = error {
+				print("Error ", error.localizedDescription)
+			}
+			
+			guard let data = data else { return }
+			
+			
+
+			do {
+				let result = try JSONDecoder().decode(PhotosContainer.self, from: data)
+//				print(">>>>>> \(result)")
+//				for photo in result.photos {
+//					print(">>> \(photo.albumId), \(photo.ownerId)")
+//					for size in photo.photoSizes{
+//						print(">>>>>> ", size.url)
+//					}
+////					print(">>>  \(photo.)")
+////					print(">>> \(photo.albumId), \(photo.ownerId)")
+//				}
+				completion(result.photos)
+			} catch {
+				print(error)
+			}
+			
+			let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+			print(" >>> photo: \(json)")
 				
 		}.resume()
 	}
@@ -131,7 +165,7 @@ class VkService {
 		loadGroups(request: request, completion: completion)
 	}
 	
-	func getUserPhotos(_ userID: String) {
+	func getUserPhotos(_ userID: String, completion: @escaping ([Photo]) -> Void) {
 		let params = [
 			"access_token": Session.shared.token,
 			"owner_id": userID,
@@ -142,7 +176,8 @@ class VkService {
 						path: .getAllPhotos,
 						params: params)
 		
-		//load(request: request)
+		loadPhotos(request: request, completion: completion)
+//		loadPhotos(request: request)
 	}
 	
 	func getGroupDataByID(_ groupID: String) {
