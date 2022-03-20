@@ -66,7 +66,7 @@ class VkService {
 //			print(" >>> friend: \(json)")
 			
 			let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-			print(" >>> friend: \(json)")
+//			print(" >>> friend: \(json)")
 
 			do {
 				let result = try JSONDecoder().decode(FriendsContainer.self, from: data)
@@ -130,15 +130,15 @@ class VkService {
 			}
 			
 			let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-			print(" >>> photo: \(json)")
+//			print(" >>> photo: \(json)")
 				
 		}.resume()
 	}
 	
-	func getFriends(_ userID: String, completion: @escaping ([Friend]) -> Void) {
+	func getFriends(_ userID: Int, completion: @escaping ([Friend]) -> Void) {
 		let params = [
 			"access_token": Session.shared.token,
-			"user_id": userID,
+			"user_id": String(userID),
 			"order": "name",
 			"v": "5.131",
 			"fields": "id,first_name,last_name, photo_200"
@@ -151,10 +151,10 @@ class VkService {
 		loadFriends(request: request, completion: completion)
 	}
 	
-	func getUserGroupsList(_ userID: String, completion: @escaping ([Group]) -> Void) {
+	func getUserGroupsList(_ userID: Int, completion: @escaping ([Group]) -> Void) {
 		let params = [
 			"access_token": Session.shared.token,
-			"user_id": userID,
+			"user_id": String(userID),
 			"extended": "1",
 			"v": "5.131"
 		]
@@ -165,10 +165,11 @@ class VkService {
 		loadGroups(request: request, completion: completion)
 	}
 	
-	func getUserPhotos(_ userID: String, completion: @escaping ([Photo]) -> Void) {
+	func getUserPhotos(_ userID: Int, completion: @escaping ([Photo]) -> Void) {
 		let params = [
 			"access_token": Session.shared.token,
-			"owner_id": userID,
+			"owner_id": String(userID),
+			"count": "100",
 			"v": "5.131"
 		]
 		let request = Request(host: .apiVkCom,

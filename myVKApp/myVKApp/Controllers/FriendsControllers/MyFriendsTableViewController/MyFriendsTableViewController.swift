@@ -64,6 +64,7 @@ class MyFriendsTableViewController: UITableViewController {
 
         friendCell.friendName.text = name
         friendCell.friendAvatar.imageView?.kf.setImage(with: URL(string: section.data[indexPath.row].avatar))
+        friendCell.friendID = section.data[indexPath.row].id
  
         return friendCell
     }
@@ -87,12 +88,15 @@ class MyFriendsTableViewController: UITableViewController {
 	}
     
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == "FriendDataSegue" {
-			if let desctinationViewController = segue.destination as? MyFriendViewController,
+		if segue.identifier == "PhotoDataSegue" {
+			if let desctinationViewController = segue.destination as? PhotosCollectionViewController,
 			   let cell = sender as? FriendCell {
+			   print("sender: \(sender), cell: \(cell)")
 				if let indexPath = tableView.indexPath(for: cell) {
 					print(">>> indexPath: \(indexPath)")
-					desctinationViewController.image = UIImage(named: "friend1")
+					if let friendID = cell.friendID {
+						desctinationViewController.friendID = friendID
+					}
 				}
 			}
 		}

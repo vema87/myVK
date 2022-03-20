@@ -11,6 +11,7 @@ class FriendCell: UITableViewCell {
 
 	@IBOutlet weak var friendAvatar: FriendView!
 	@IBOutlet weak var friendName: UILabel!
+	var friendID: Int?
 	
 	override func layoutSubviews() {
 		super.layoutSubviews()

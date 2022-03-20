@@ -11,13 +11,25 @@ import UIKit
 
 class PhotosCollectionViewController: UICollectionViewController {
 
+	private var photos = [Photo]()
+	var friendID: Int?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+        if let friendID = self.friendID {
+			VkService.shared.getUserPhotos(friendID) { [weak self] photosList in
+				DispatchQueue.main.async {
+					guard let self = self else { return }
+					self.photos = photosList
+					self.collectionView.reloadData()
+				}
+			}
+		}
+		
+		
+//		self.collectionView.reloadData()
     }
 
     /*
@@ -32,15 +44,14 @@ class PhotosCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
+//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        return self.photos.count
+//    }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return self.photos.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -49,13 +60,16 @@ class PhotosCollectionViewController: UICollectionViewController {
 			return UICollectionViewCell()
 		}
 		
-        
+		let url = URL(string: photos[indexPath.row].photoSizes[1].url)
+		if let data = try? Data(contentsOf: url!) {
+			photoCell.photoImageView.image = UIImage(data: data)
+		}
     
         // Configure the cell
     
         return photoCell
     }
-
+	
     // MARK: UICollectionViewDelegate
 
     /*
