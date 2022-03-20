@@ -65,7 +65,7 @@ class VkService {
 //			let json = String(data: data, encoding: .utf8)
 //			print(" >>> friend: \(json)")
 			
-			let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+//			let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
 //			print(" >>> friend: \(json)")
 
 			do {
@@ -87,17 +87,10 @@ class VkService {
 			}
 			
 			guard let data = data else { return }
+			
+			let json = try! JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [String: Any]
+			completion(GroupsContainer.map(json).response)
 
-			do {
-				let result = try JSONDecoder().decode(GroupsContainer.self, from: data)
-//				for group in result.groups {
-//					print(" \(group.id) \(group.groupName)")
-//				}
-				completion(result.groups)
-			} catch {
-				print(error)
-			}
-				
 		}.resume()
 	}
 	
@@ -111,26 +104,13 @@ class VkService {
 			
 			guard let data = data else { return }
 			
-			
-
-			do {
-				let result = try JSONDecoder().decode(PhotosContainer.self, from: data)
-//				print(">>>>>> \(result)")
-//				for photo in result.photos {
-//					print(">>> \(photo.albumId), \(photo.ownerId)")
-//					for size in photo.photoSizes{
-//						print(">>>>>> ", size.url)
-//					}
-////					print(">>>  \(photo.)")
-////					print(">>> \(photo.albumId), \(photo.ownerId)")
-//				}
-				completion(result.photos)
-			} catch {
-				print(error)
-			}
-			
-			let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+			let json = try! JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [String: Any]
 //			print(" >>> photo: \(json)")
+//			let array = PhotosContainer.map(json).response
+//			for a in array {
+//				print("!!! owner: \(a.ownerId)")
+//			}
+			completion(PhotosContainer.map(json).response)
 				
 		}.resume()
 	}

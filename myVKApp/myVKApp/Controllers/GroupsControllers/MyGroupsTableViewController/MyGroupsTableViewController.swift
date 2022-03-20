@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Kingfisher
+import RealmSwift
 
 class MyGroupsTableViewController: UITableViewController {
 
@@ -20,12 +22,38 @@ class MyGroupsTableViewController: UITableViewController {
 		super.viewWillAppear(animated)
 		VkService.shared.getUserGroupsList(Session.shared.userID) { [weak self] groupsList in
 			DispatchQueue.main.async {
-				guard let self = self else { return }
-				self.groups = groupsList
-				self.tableView.reloadData()
+				self?.saveGroups(groupsList)
+				self?.groups = self!.getGroupsFromRealm()
+				self?.tableView.reloadData()
 			}
 		}
+		
 		tableView.reloadData()
+	}
+	
+	func saveGroups(_ data: [Group]) {
+		do {
+			// create realm (do-catch is mandatory)
+			let realm = try Realm()
+			//write to DB:
+			realm.beginWrite()
+			realm.add(data)
+			try realm.commitWrite()
+		} catch {
+			print(error)
+		}
+	}
+	
+	func getGroupsFromRealm() -> [Group] {
+		var groups = [Group]()
+		do {
+			let realm = try Realm()
+			let groupsData = realm.objects(Group.self)
+			groups = Array(groupsData)
+		} catch {
+			print(error)
+		}
+		return groups
 	}
 	
 	// MARK: - Table view data source
@@ -41,9 +69,9 @@ class MyGroupsTableViewController: UITableViewController {
 			return UITableViewCell()
 		}
 		
+		let url = URL(string: groups[indexPath.row].avatar)
+		groupCell.groupAvatar.kf.setImage(with: url)
 		groupCell.groupName.text = groups[indexPath.row].groupName
-		groupCell.groupAvatar.image = UIImage(named: "group1")
-//		groupCell.groupAvatar.image = Groups.shared.internalGroups[indexPath.row].groupAvatar
 		
 		return groupCell
 	}

@@ -7,8 +7,7 @@
 
 import UIKit
 import Kingfisher
-
-//private let reuseIdentifier = "Cell"
+import RealmSwift
 
 class PhotosCollectionViewController: UICollectionViewController {
 
@@ -22,13 +21,39 @@ class PhotosCollectionViewController: UICollectionViewController {
         if let friendID = self.friendID {
 			VkService.shared.getUserPhotos(friendID) { [weak self] photosList in
 				DispatchQueue.main.async {
-					guard let self = self else { return }
-					self.photos = photosList
-					self.collectionView.reloadData()
+					self?.savePhotos(photosList)
+					self?.photos = self!.getPhotosFromRealm(friendId: friendID)
+					self?.collectionView.reloadData()
 				}
 			}
 		}
     }
+    
+    func savePhotos(_ data: [Photo]) {
+		do {
+			// create realm (do-catch is mandatory)
+			let realm = try Realm()
+			//write to DB:
+			realm.beginWrite()
+			realm.add(data)
+			try realm.commitWrite()
+		} catch {
+			print(error)
+		}
+	}
+
+	func getPhotosFromRealm(friendId: Int) -> [Photo] {
+		var photos = [Photo]()
+		do {
+			let realm = try Realm()
+			let photosData = realm.objects(Photo.self).filter("ownerId = \(friendId)")
+			photos = Array(photosData)
+		} catch {
+			print(error)
+		}
+		return photos
+	}
+	
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.photos.count
@@ -40,8 +65,7 @@ class PhotosCollectionViewController: UICollectionViewController {
 			return UICollectionViewCell()
 		}
 		
-		let url = URL(string: photos[indexPath.row].photoSizes[1].url)
-		photoCell.photoImageView.kf.setImage(with: url)
+		photoCell.photoImageView.kf.setImage(with: URL(string: photos[indexPath.row].photoUrl))
 		
 //		another way: download photo via swift:
 //		if let data = try? Data(contentsOf: url!) {
