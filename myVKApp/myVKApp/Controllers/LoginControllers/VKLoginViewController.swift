@@ -72,7 +72,7 @@ extension VKLoginViewController: WKNavigationDelegate {
 				if let token = params["access_token"],
 					let userId = params["user_id"] {
 					session.token = token
-					session.userID = userId
+					session.userID = Int(userId)!
 					performSegue(withIdentifier: "login", sender: self)
 				}
 				decisionHandler(.cancel)

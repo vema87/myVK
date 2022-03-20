@@ -31,8 +31,11 @@
 		B69E8F3D2761623000F9C751 /* MyFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E8F3C2761623000F9C751 /* MyFriendView.swift */; };
 		B69E8F41276164D000F9C751 /* MyFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E8F40276164D000F9C751 /* MyFriendViewController.swift */; };
 		B6AB24AE278C891800AD3B4E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AB24AD278C891800AD3B4E /* Session.swift */; };
-		B6B8423427CEBEA10071415A /* FriendContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B8423327CEBEA10071415A /* FriendContainer.swift */; };
-		B6B8423627CEEF780071415A /* GroupContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B8423527CEEF780071415A /* GroupContainer.swift */; };
+		B6B8423427CEBEA10071415A /* FriendsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B8423327CEBEA10071415A /* FriendsContainer.swift */; };
+		B6B8423627CEEF780071415A /* GroupsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B8423527CEEF780071415A /* GroupsContainer.swift */; };
+		B6B9FFD627D6938800668885 /* PhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B9FFD527D6938800668885 /* PhotosCollectionViewController.swift */; };
+		B6B9FFD927D693E000668885 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B9FFD827D693E000668885 /* PhotosCollectionViewCell.swift */; };
+		B6B9FFDB27D6DE5000668885 /* PhotosContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B9FFDA27D6DE5000668885 /* PhotosContainer.swift */; };
 		B6E284C2275D83EB00306D3B /* MyFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E284C1275D83EB00306D3B /* MyFriendsTableViewController.swift */; };
 		B6E284C5275D842300306D3B /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E284C4275D842300306D3B /* FriendCell.swift */; };
 		B6E284C8275D846400306D3B /* FriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E284C7275D846400306D3B /* FriendModel.swift */; };
@@ -40,9 +43,13 @@
 		B6F5B9DB275D5CDC0037C8C0 /* MyGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F5B9DA275D5CDC0037C8C0 /* MyGroupsTableViewController.swift */; };
 		B6F5B9DF275D5DFC0037C8C0 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F5B9DE275D5DFC0037C8C0 /* GroupCell.swift */; };
 		B6F5B9E2275D679E0037C8C0 /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F5B9E1275D679E0037C8C0 /* GroupModel.swift */; };
+		FC2B3F6603F7337649185C4B /* Pods_myVKApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F7DA6FEB133CBEC8F8DBDF /* Pods_myVKApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		065C0C83BAF74EF02DF5F2DD /* Pods-myVKApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKApp.release.xcconfig"; path = "Target Support Files/Pods-myVKApp/Pods-myVKApp.release.xcconfig"; sourceTree = "<group>"; };
+		37F7DA6FEB133CBEC8F8DBDF /* Pods_myVKApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_myVKApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50FCDB15DB8D8548DB78759A /* Pods-myVKApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myVKApp.debug.xcconfig"; path = "Target Support Files/Pods-myVKApp/Pods-myVKApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B619ABCD276E9D7F00E80918 /* ThreeDotsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDotsView.swift; sourceTree = "<group>"; };
 		B61E0ADB276C269400753B23 /* ViewsControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsControl.swift; sourceTree = "<group>"; };
 		B61E0ADD276C285E00753B23 /* CommentsControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsControl.swift; sourceTree = "<group>"; };
@@ -69,8 +76,11 @@
 		B69E8F3C2761623000F9C751 /* MyFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendView.swift; sourceTree = "<group>"; };
 		B69E8F40276164D000F9C751 /* MyFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendViewController.swift; sourceTree = "<group>"; };
 		B6AB24AD278C891800AD3B4E /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		B6B8423327CEBEA10071415A /* FriendContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendContainer.swift; sourceTree = "<group>"; };
-		B6B8423527CEEF780071415A /* GroupContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContainer.swift; sourceTree = "<group>"; };
+		B6B8423327CEBEA10071415A /* FriendsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsContainer.swift; sourceTree = "<group>"; };
+		B6B8423527CEEF780071415A /* GroupsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsContainer.swift; sourceTree = "<group>"; };
+		B6B9FFD527D6938800668885 /* PhotosCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewController.swift; sourceTree = "<group>"; };
+		B6B9FFD827D693E000668885 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		B6B9FFDA27D6DE5000668885 /* PhotosContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosContainer.swift; sourceTree = "<group>"; };
 		B6E284C1275D83EB00306D3B /* MyFriendsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsTableViewController.swift; sourceTree = "<group>"; };
 		B6E284C4275D842300306D3B /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		B6E284C7275D846400306D3B /* FriendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModel.swift; sourceTree = "<group>"; };
@@ -85,12 +95,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC2B3F6603F7337649185C4B /* Pods_myVKApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F37F96A2C1AB90EB7F5A8E4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				37F7DA6FEB133CBEC8F8DBDF /* Pods_myVKApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		622FCD70F62E61EE5C6697AE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				50FCDB15DB8D8548DB78759A /* Pods-myVKApp.debug.xcconfig */,
+				065C0C83BAF74EF02DF5F2DD /* Pods-myVKApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B619ABCC276E9D5000E80918 /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,8 +193,9 @@
 		B68CA92B27CD95CE00C420BC /* Responses */ = {
 			isa = PBXGroup;
 			children = (
-				B6B8423327CEBEA10071415A /* FriendContainer.swift */,
-				B6B8423527CEEF780071415A /* GroupContainer.swift */,
+				B6B8423327CEBEA10071415A /* FriendsContainer.swift */,
+				B6B8423527CEEF780071415A /* GroupsContainer.swift */,
+				B6B9FFDA27D6DE5000668885 /* PhotosContainer.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -176,6 +205,8 @@
 			children = (
 				B69127A427552A7F0036FE5F /* myVKApp */,
 				B69127A327552A7F0036FE5F /* Products */,
+				622FCD70F62E61EE5C6697AE /* Pods */,
+				3F37F96A2C1AB90EB7F5A8E4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -251,6 +282,31 @@
 			path = Session;
 			sourceTree = "<group>";
 		};
+		B6B9FFD327D6931600668885 /* PhotosControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B6B9FFD427D6934500668885 /* PhotosCollectionViewController */,
+			);
+			path = PhotosControllers;
+			sourceTree = "<group>";
+		};
+		B6B9FFD427D6934500668885 /* PhotosCollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B6B9FFD727D6938E00668885 /* Cell */,
+				B6B9FFD527D6938800668885 /* PhotosCollectionViewController.swift */,
+			);
+			path = PhotosCollectionViewController;
+			sourceTree = "<group>";
+		};
+		B6B9FFD727D6938E00668885 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B6B9FFD827D693E000668885 /* PhotosCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		B6E284C0275D839400306D3B /* MyFriendsTableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +339,7 @@
 		B6F5B9D8275D56770037C8C0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B6B9FFD327D6931600668885 /* PhotosControllers */,
 				B66B641B276AAC3B00661C8F /* NewsController */,
 				B692966F2768EABA0064F971 /* FriendsControllers */,
 				B692966E2768EA9E0064F971 /* GroupsControllers */,
@@ -315,9 +372,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B69127B627552A810036FE5F /* Build configuration list for PBXNativeTarget "myVKApp" */;
 			buildPhases = (
+				803B4E7128310808965AC86A /* [CP] Check Pods Manifest.lock */,
 				B691279E27552A7F0036FE5F /* Sources */,
 				B691279F27552A7F0036FE5F /* Frameworks */,
 				B69127A027552A7F0036FE5F /* Resources */,
+				C46A6E8F65B77149B77F0E6C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -374,6 +433,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		803B4E7128310808965AC86A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-myVKApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C46A6E8F65B77149B77F0E6C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myVKApp/Pods-myVKApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myVKApp/Pods-myVKApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myVKApp/Pods-myVKApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B691279E27552A7F0036FE5F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -387,6 +488,7 @@
 				B69127AA27552A7F0036FE5F /* LoginViewController.swift in Sources */,
 				B69296732768F5AC0064F971 /* FriendsSection.swift in Sources */,
 				B69127A627552A7F0036FE5F /* AppDelegate.swift in Sources */,
+				B6B9FFDB27D6DE5000668885 /* PhotosContainer.swift in Sources */,
 				B61EC821275ECAD500C9C448 /* ExternalGroupsTableViewController.swift in Sources */,
 				B61E0ADC276C269400753B23 /* ViewsControl.swift in Sources */,
 				B6E284C5275D842300306D3B /* FriendCell.swift in Sources */,
@@ -396,17 +498,19 @@
 				B68CA92A27CD7F4000C420BC /* VkService.swift in Sources */,
 				B6E284C8275D846400306D3B /* FriendModel.swift in Sources */,
 				B69E8F41276164D000F9C751 /* MyFriendViewController.swift in Sources */,
+				B6B9FFD627D6938800668885 /* PhotosCollectionViewController.swift in Sources */,
 				B61E0AE0276C2C2900753B23 /* RepostsControl.swift in Sources */,
-				B6B8423427CEBEA10071415A /* FriendContainer.swift in Sources */,
+				B6B8423427CEBEA10071415A /* FriendsContainer.swift in Sources */,
 				B66B6420276AACB600661C8F /* NewsCell.swift in Sources */,
 				B619ABCE276E9D7F00E80918 /* ThreeDotsView.swift in Sources */,
 				B6ECAD89278F7BE300894333 /* VKLoginViewController.swift in Sources */,
 				B6F5B9E2275D679E0037C8C0 /* GroupModel.swift in Sources */,
 				B6AB24AE278C891800AD3B4E /* Session.swift in Sources */,
 				B66B6422276AB1D900661C8F /* NewsModel.swift in Sources */,
-				B6B8423627CEEF780071415A /* GroupContainer.swift in Sources */,
+				B6B8423627CEEF780071415A /* GroupsContainer.swift in Sources */,
 				B69127A827552A7F0036FE5F /* SceneDelegate.swift in Sources */,
 				B69E8F3D2761623000F9C751 /* MyFriendView.swift in Sources */,
+				B6B9FFD927D693E000668885 /* PhotosCollectionViewCell.swift in Sources */,
 				B6E284C2275D83EB00306D3B /* MyFriendsTableViewController.swift in Sources */,
 				B6F5B9DB275D5CDC0037C8C0 /* MyGroupsTableViewController.swift in Sources */,
 			);
@@ -552,6 +656,7 @@
 		};
 		B69127B727552A810036FE5F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50FCDB15DB8D8548DB78759A /* Pods-myVKApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -579,6 +684,7 @@
 		};
 		B69127B827552A810036FE5F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 065C0C83BAF74EF02DF5F2DD /* Pods-myVKApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

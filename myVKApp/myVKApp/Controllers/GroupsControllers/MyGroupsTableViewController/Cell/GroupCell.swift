@@ -16,4 +16,8 @@ class GroupCell: UITableViewCell {
 		super.layoutSubviews()
 	}
 	
+	override func prepareForReuse() {
+		groupName.text = nil
+		groupAvatar.image = nil
+	}
 }

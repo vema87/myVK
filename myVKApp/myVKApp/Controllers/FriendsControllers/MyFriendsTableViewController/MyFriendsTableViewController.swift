@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MyFriendsTableViewController: UITableViewController {
 
@@ -45,7 +46,6 @@ class MyFriendsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends[section].data.count
-        //Friends.shared.internalFriendsList.count
     }
     
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -61,13 +61,10 @@ class MyFriendsTableViewController: UITableViewController {
 		
 		let section = friends[indexPath.section]
 		let name = section.data[indexPath.row].lastName + " " + section.data[indexPath.row].firstName
-		let image = UIImage(named: "friend1")
-//		let image = section.data[indexPath.row].friendAvatar
 
         friendCell.friendName.text = name
-        if let avatar = image {
-			friendCell.friendAvatar.image = avatar
-		}
+        friendCell.friendAvatar.imageView?.kf.setImage(with: URL(string: section.data[indexPath.row].avatar))
+        friendCell.friendID = section.data[indexPath.row].id
  
         return friendCell
     }
@@ -91,15 +88,15 @@ class MyFriendsTableViewController: UITableViewController {
 	}
     
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == "FriendDataSegue" {
-			if let desctinationViewController = segue.destination as? MyFriendViewController,
+		if segue.identifier == "PhotoDataSegue" {
+			if let desctinationViewController = segue.destination as? PhotosCollectionViewController,
 			   let cell = sender as? FriendCell {
-//				print("sender: \(sender), cell: \(cell)")
+			   print("sender: \(sender), cell: \(cell)")
 				if let indexPath = tableView.indexPath(for: cell) {
 					print(">>> indexPath: \(indexPath)")
-					desctinationViewController.image = UIImage(named: "friend1")
-//					desctinationViewController.image = friends[indexPath.section].data[indexPath.row].friendAvatar
-//					desctinationViewController.image = Friends.shared.internalFriendsList[indexPath.row].friendAvatar
+					if let friendID = cell.friendID {
+						desctinationViewController.friendID = friendID
+					}
 				}
 			}
 		}
