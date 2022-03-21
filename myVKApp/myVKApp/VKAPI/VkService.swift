@@ -62,19 +62,9 @@ class VkService {
 			
 			guard let data = data else { return }
 			
-//			let json = String(data: data, encoding: .utf8)
-//			print(" >>> friend: \(json)")
+			let json = try! JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [String: Any]
+			completion(FriendsContainer.map(json).response)
 			
-//			let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-//			print(" >>> friend: \(json)")
-
-			do {
-				let result = try JSONDecoder().decode(FriendsContainer.self, from: data)
-				completion(result.friends)
-			} catch {
-				print(error)
-			}
-				
 		}.resume()
 	}
 	

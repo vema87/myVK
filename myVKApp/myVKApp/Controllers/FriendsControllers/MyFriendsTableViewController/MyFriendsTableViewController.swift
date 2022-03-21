@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import RealmSwift
 
 class MyFriendsTableViewController: UITableViewController {
 
@@ -23,15 +24,40 @@ class MyFriendsTableViewController: UITableViewController {
         self.tableView.showsVerticalScrollIndicator = false
         VkService.shared.getFriends(Session.shared.userID) { [weak self] friendsList in
 			DispatchQueue.main.async {
-				guard let self = self else { return }
-				self.data = friendsList
-				self.friends = FriendsLoader.getFriendSections(data: self.data)
-				self.loadLetters()
-				self.tableView.reloadData()
+				self?.saveFriends(friendsList)
+				self?.data = self!.getFriendsFromRealm()
+				self?.friends = FriendsLoader.getFriendSections(data: self!.data)
+				self?.loadLetters()
+				self?.tableView.reloadData()
 			}
 		}
 		self.tableView.sectionHeaderTopPadding = 0
     }
+    
+    func saveFriends(_ data: [Friend]) {
+		do {
+			// create realm (do-catch is mandatory)
+			let realm = try Realm()
+			//write to DB:
+			try realm.write {
+				realm.add(data)
+			}
+		} catch {
+			print(error)
+		}
+	}
+	
+	func getFriendsFromRealm() -> [Friend] {
+		var friends = [Friend]()
+		do {
+			let realm = try Realm()
+			let friendsData = realm.objects(Friend.self)
+			friends = Array(friendsData)
+		} catch {
+			print(error)
+		}
+		return friends
+	}
     
     func loadLetters() {
 		for friend in friends {
