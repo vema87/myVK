@@ -6,34 +6,38 @@
 //
 
 import Foundation
+import RealmSwift
 
-class Group: Decodable {
-	let id: Int
-	var groupName: String
-	var avatar: String
+class GroupsContainer {
+	var response = [Group]()
 	
-	enum CodingKeys: String, CodingKey {
-		case id
-		case groupName = "name"
-		case avatar = "photo_200"
-	}
-}
-
-struct GroupsContainer: Decodable {
-	let groups: [Group]
-}
-
-extension GroupsContainer {
-	enum CodingKeys: String, CodingKey {
-		case response
-		enum ItemKeys: String, CodingKey {
-			case items
+	static func map(_ dict: [String: Any]) -> GroupsContainer {
+		let resp = GroupsContainer()
+		if let data = dict["response"] as? [String:Any] {
+			if let items = data["items"] as? [[String: Any]] {
+				resp.response = items.map({
+					Group.map($0)
+				})
+			}
 		}
+		
+		return resp
 	}
+}
+
+class Group: Object {
+	@objc dynamic var id: Int = 0
+	@objc dynamic var groupName: String = ""
+	@objc dynamic var avatar: String = ""
 	
-	init(from decoder: Decoder) throws {
-		let mainContainer = try decoder.container(keyedBy: CodingKeys.self)
-		let itemContainer = try mainContainer.nestedContainer(keyedBy: CodingKeys.ItemKeys.self, forKey: .response)
-		groups = try itemContainer.decode([Group].self, forKey: .items)
+	static func map(_ dict: [String: Any]) -> Group {
+		let group = Group()
+		
+		if let groupId = dict["id"] as? Int { group.id = groupId }
+		if let name = dict["name"] as? String { group.groupName = name }
+		if let photo = dict["photo_200"] as? String { group.avatar = photo }
+		
+		return group
 	}
+
 }
